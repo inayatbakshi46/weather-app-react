@@ -16,7 +16,7 @@ const Search= ({changeCity}) => {
   };
 
   return (
-    <div className="flex items-center justify-center space-x-1 p-4 text-xl">
+    <div className="min-h-[10vh] flex items-center justify-center space-x-1 p-4 text-xl">
       <input type="text" value={val} onChange={handleInput} className="bg-transparent border-b-2 border-black dark:border-dark focus:outline-none mx-2 placeholder:text-black placeholder:dark:text-dark" placeholder="Enter city name..." />
       <button onClick={handleSet}>
         <FontAwesomeIcon icon={faMagnifyingGlass} />
