@@ -38,7 +38,7 @@ const App = () => {
   return (
     <main className={time > 18 ? 'dark' : ''}>
       
-      <div className="h-dvh bg-gradient-to-t from-day dark:bg-gradient-to-t dark:from-night dark:to-black dark:text-dark font-custom">
+      <div className=" bg-gradient-to-t from-day dark:bg-gradient-to-t dark:from-night dark:to-black dark:text-dark font-custom">
       <section className="">
       
       <Search changeCity={changeCity} />
