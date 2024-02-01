@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Search from './components/Search';
 import Weather from './components/Weather';
+import Forecast from './components/Forecast';
+
 import Loading from './components/Loading';
 import Invalid from './components/Invalid';
 import Footer from './components/Footer';
@@ -20,7 +22,7 @@ const App = () => {
          const res = await val.json();
          setData(res)
       } catch (error) {
-         console.log(error);
+         console.error(error);
       }
       
     
@@ -30,15 +32,15 @@ const App = () => {
         position => {
           const latitude = position.coords.latitude;
           const longitude = position.coords.longitude;
-          console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+          
           coordsData(latitude, longitude);
         },
         error => {
-          console.log(`Error getting location: ${error.message}`);
+          console.error(`Error getting location: ${error.message}`);
         }
       );
     } else {
-      console.log("Geolocation is not supported by this browser.");
+      console.error("Geolocation is not supported by this browser.");
     }
   }, [])
 
@@ -65,13 +67,25 @@ const App = () => {
   };
 
   return (
-    <main className={time > 18 ? 'dark' : ''}>
-      <div className=" bg-gradient-to-t from-day dark:bg-gradient-to-t dark:from-night dark:to-black dark:text-dark font-custom">
+    <main className={time > 18 || time < 7  ? "dark" : "light"}>
+      <div className="bg-day dark:bg-night dark:text-dark font-custom">
         <section>
           <Search changeCity={changeCity} />
         </section>
         <section>
-          {data ? (data.cod === 200 ? <Weather data={data} /> : <Invalid />) : <Loading />}
+          {data ? (
+            data.cod === 200 ? (
+              <>
+                <Weather data={data} />
+                <Forecast api={key} city={city} />
+              </>
+            ) : (
+              <Invalid />
+            )
+          ) : (
+            <Loading />
+          )}
+
         </section>
         <section>
           <Footer />

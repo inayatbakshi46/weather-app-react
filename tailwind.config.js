@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        day: '#5CE1E6',
+        day: '#ffde17',
         night: '#002B65',
         dark: '#E7E4E6',
         grad: "#2D3250"
